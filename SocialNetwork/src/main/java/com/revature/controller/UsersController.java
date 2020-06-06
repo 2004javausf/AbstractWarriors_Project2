@@ -2,8 +2,8 @@ package com.revature.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Users;
@@ -20,8 +20,8 @@ public class UsersController {
 		this.ud = u;
 	}
 	
-	@PostMapping("addUser.app")
-	public @ResponseBody void addUser(Users user) {
+	@PostMapping("/addUser.app")
+	public void addUser(@RequestBody Users user) {
 		ud.save(user);
 	}
 
