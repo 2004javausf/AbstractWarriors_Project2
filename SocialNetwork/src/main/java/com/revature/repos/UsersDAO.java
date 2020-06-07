@@ -15,4 +15,7 @@ public interface UsersDAO extends CrudRepository<Users, String>, JpaRepository<U
 	@SuppressWarnings("unchecked")
 	public Users save(Users user);
 	
+
+	public Users findByEmail(String email);
+	
 }

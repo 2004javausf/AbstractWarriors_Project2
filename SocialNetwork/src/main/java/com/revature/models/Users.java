@@ -1,15 +1,27 @@
 package com.revature.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Component("users")//generic stereotype for any spring managed component
 @Scope("prototype")
@@ -21,7 +33,7 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
 	@SequenceGenerator(name="userSequence", sequenceName="USER_SEQ", allocationSize=1)
 	@Column(name="USER_ID")
-	private long id;
+	private long userid;
 	
 	@Column(name="FIRST_NAME")
 	private String first_name;
@@ -46,9 +58,29 @@ public class Users {
 	
 	@Column(name="PROFILE_IMAGE")
 	private String profile_image;
+
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JsonIgnore
+	@JoinTable(name="USERS_FRIENDS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="FRIEND_ID")})
+	private List<Users> friends;
 	
-	
-	
+	/* needed for self-join many to many */
+	@ManyToMany(mappedBy="friends")
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JsonIgnore
+	private List<Users> others;
+
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	@JsonIgnore
+	@JoinTable(name="LIKED_POSTS",
+		joinColumns={@JoinColumn(name="USER_ID")},
+		inverseJoinColumns={@JoinColumn(name="POST_ID")})
+	private List<Post> likedPosts;
+
 	public Users(String first_name, String last_name, String username, String password, String email, int date_of_birth,
 			String biography, String profile_image) {
 		super();
@@ -69,6 +101,18 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+
+	public long getUserid() {
+		return userid;
+	}
+
+
+
+	public void setUserid(long userid) {
+		this.userid = userid;
+	}
+
 
 
 	public int getDate_of_birth() {
@@ -81,15 +125,9 @@ public class Users {
 	}
 
 
-
-
-
 	public String getBiography() {
 		return biography;
 	}
-
-
-
 
 
 	public void setBiography(String biography) {
@@ -97,28 +135,15 @@ public class Users {
 	}
 
 
-
-
-
 	public String getProfile_image() {
 		return profile_image;
 	}
-
 
 
 	public void setProfile_image(String profile_image) {
 		this.profile_image = profile_image;
 	}
 	
-
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getFirst_name() {
 		return first_name;
@@ -163,7 +188,8 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", first_name=" + first_name + ", last_name=" + last_name + ", username=" + username
+
+		return "Users [userid=" + userid + ", first_name=" + first_name + ", last_name=" + last_name + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", date_of_birth=" + date_of_birth + ", biography="
 				+ biography + ", profile_image=" + profile_image + "]";
 	}
