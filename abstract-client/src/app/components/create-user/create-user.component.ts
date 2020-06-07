@@ -21,7 +21,7 @@ export class CreateUserComponent implements OnInit {
     this.userCreationForm = this.fb.group({
       first_name: '',
       last_name: '',
-      user_name: '',
+      username: '',
       password: '',
       email: '',
       date_of_birth: 0,
