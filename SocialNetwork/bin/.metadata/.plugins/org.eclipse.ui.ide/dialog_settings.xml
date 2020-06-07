@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<list key="installedFeatures">
 		<item value="com.ianbrandt.tools.m2e.mdp.feature:0.0.4.201409291703"/>
 		<item value="org.eclipse.buildship:3.1.3.v20191118-1057"/>
@@ -41,6 +42,8 @@
 		<item value="org.sonatype.m2e.egit.feature:0.15.1.201806191431"/>
 		<item value="org.sonatype.m2e.mavenarchiver.feature:0.17.5.202002191804"/>
 	</list>
+=======
+>>>>>>> eeee830f27d66ecbb7c378893de3acd11caefe53
 	<section name="ChooseWorkspaceDialogSettings">
 		<item key="DIALOG_X_ORIGIN" value="38"/>
 		<item key="DIALOG_Y_ORIGIN" value="234"/>

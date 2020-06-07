@@ -32,6 +32,7 @@ Binding(COMMAND+SHIFT+T,
 
 !ENTRY org.eclipse.ui 2 2 2020-06-05 16:35:49.928
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+<<<<<<< HEAD
 !SESSION 2020-06-05 17:39:12.305 -----------------------------------------------
 eclipse.buildId=4.6.0.202003181317-RELEASE
 java.version=13.0.2
@@ -66,3 +67,5 @@ Binding(COMMAND+SHIFT+T,
 
 !ENTRY org.eclipse.ui 2 2 2020-06-05 17:39:25.917
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+=======
+>>>>>>> eeee830f27d66ecbb7c378893de3acd11caefe53
