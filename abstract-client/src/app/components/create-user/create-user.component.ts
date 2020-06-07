@@ -19,10 +19,9 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.userCreationForm = this.fb.group({
-      user_id: 0,
       first_name: '',
       last_name: '',
-      user_name: '',
+      username: '',
       password: '',
       email: '',
       date_of_birth: 0,
@@ -35,7 +34,7 @@ export class CreateUserComponent implements OnInit {
     const formValue = this.userCreationForm.value;
     console.log(formValue);
     this.userService.addUser(formValue).subscribe(res => {
-      console.log(res);
+      this.userCreationForm.reset();
     })
   }
 
