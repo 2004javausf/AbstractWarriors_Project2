@@ -1,0 +1,44 @@
+package com.revature.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USERS")
+public class Users {
+	
+	 @Column(name = "ID")
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 private long id;
+	 @Column(name = "FIRST_NAME")
+	 private String firstName;
+	 @Column(name = "LAST_NAME")
+	 private String lastName;
+	 @Column(name = "USERNAME")
+	 private String username;
+	 @Column(name = "PASSWORD")
+	 private String password;
+	 @Column(name = "EMAIL")
+	 private String email;
+	 @Column(name = "DATE_OF_BIRTH")
+	 private int dateOfBirth;
+	 @Column(name = "PROFILE_IMAGE")
+	 private String profileImage;
+	 
+	 
+	 
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	
+	 
+}
