@@ -1,0 +1,22 @@
+package com.revature.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.revature.dao.UsersDAO;
+import com.revature.entity.Users;
+
+@Service
+public class UsersService {
+	
+	@Autowired
+	UsersDAO ud;
+	
+	public Users insertUser (Users user) {
+		return this.ud.save(user);
+	}
+	
+	public Users findByUsername (String username) {
+		return this.ud.findUsersByUsername(username);
+	}
+}
