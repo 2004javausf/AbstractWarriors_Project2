@@ -19,8 +19,8 @@ public class Comment {
 	@Column(name="COMMENT_ID")
 	private long commentId;
 	
-	@Column(name="COMMENT")
-	private String comment;
+	@Column(name="MESSAGE")
+	private String message;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="POST_ID")
@@ -37,7 +37,7 @@ public class Comment {
 	public Comment(long commentId, String comment) {
 		super();
 		this.commentId = commentId;
-		this.comment = comment;
+		this.message = comment;
 	}
 
 	public long getCommentId() {
@@ -49,11 +49,11 @@ public class Comment {
 	}
 
 	public String getComment() {
-		return comment;
+		return message;
 	}
 
 	public void setComment(String Comment) {
-		this.comment = Comment;
+		this.message = Comment;
 	}
 
 	public Post getPost() {
@@ -74,7 +74,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", comment=" + comment + ", post=" + post + ", user=" + user + "]";
+		return "Comment [commentId=" + commentId + ", comment=" + message + ", post=" + post + ", user=" + user + "]";
 	}
 
 
