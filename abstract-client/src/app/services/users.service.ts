@@ -15,6 +15,10 @@ export class UsersService {
   constructor(private httpService: HttpClient) { }
 
   addUser(user: User): Observable<User>{
-    return this.httpService.post<User>('http://localhost:8085/users/addUser.app', JSON.stringify(user), this.httpOptions)
+    return this.httpService.post<User>('http://localhost:9000/users/adduser', JSON.stringify(user), this.httpOptions)
+  }
+
+  getUser(user: User): Observable<User>{
+    return this.httpService.post<User>('http://localhost:9000/users/login', JSON.stringify(user), this.httpOptions);
   }
 }
