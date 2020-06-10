@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 @Table(name="USERS")
 public class Users {
 	
-	 @Column(name = "ID")
+	 @Column(name = "USER_ID")
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private long id;
@@ -30,21 +30,37 @@ public class Users {
 	 private String password;
 	 @Column(name = "EMAIL")
 	 private String email;
-	 
+
 	 @Temporal(TemporalType.DATE)
 	 @Column(name = "DATE_OF_BIRTH")
 	 private Date dateOfBirth;
 	 @Column(name = "PROFILE_IMAGE")
 	 private String profileImage;
 	 
-	public Users() {
+	 public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth,
 			String profileImage) {
 		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.profileImage = profileImage;
+	}
+
+
+
+	public Users(long id, String firstName, String lastName, String username, String password, String email,
+			Date dateOfBirth, String profileImage) {
+		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -62,6 +78,7 @@ public class Users {
 		this.id = id;
 	}
 
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,13 +87,16 @@ public class Users {
 		this.firstName = firstName;
 	}
 
+
 	public String getLastName() {
 		return lastName;
 	}
 
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 
 	public String getUsername() {
 		return username;
@@ -128,6 +148,10 @@ public class Users {
 	
 	 
 	 
+	
+	 
+
+
 	
 	 
 }

@@ -27,10 +27,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Post {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="postSequence")
-    @SequenceGenerator(name="postSequence", sequenceName="POST_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="POST_ID")
-	private int postId;
+	private long postId;
 	
 	@Column(name="MESSAGE")
 	private String message;
@@ -55,10 +54,10 @@ public class Post {
 	@JoinColumn(name="USER_ID")
 	private Users user;
 
-	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Users> likers;
+//	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
+//	@JsonIgnore
+//	private List<Users> likers;
 	
 	public Post() {}
 
@@ -79,11 +78,11 @@ public class Post {
 		this.user = user;
 	}
 
-	public int getPostId() {
+	public long getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(long postId) {
 		this.postId = postId;
 	}
 
@@ -126,46 +125,4 @@ public class Post {
 	}
 	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((images == null) ? 0 : images.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + numOfLikes;
-		result = prime * result + postId;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Post other = (Post) obj;
-		if (images == null) {
-			if (other.images != null)
-				return false;
-		} else if (!images.equals(other.images))
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (numOfLikes != other.numOfLikes)
-			return false;
-		if (postId != other.postId)
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
-		return true;
-	}
 }

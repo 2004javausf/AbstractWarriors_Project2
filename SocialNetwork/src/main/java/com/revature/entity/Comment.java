@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,13 +15,12 @@ import javax.persistence.Table;
 public class Comment {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CommentSequence")
-    @SequenceGenerator(name="CommentSequence", sequenceName="COMMENT_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="COMMENT_ID")
-	private int CommentId;
+	private long commentId;
 	
-	@Column(name="COMMENT")
-	private String Comment;
+	@Column(name="MESSAGE")
+	private String message;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="POST_ID")
@@ -36,58 +34,50 @@ public class Comment {
 		super();
 	}
 
-	public Comment(int CommentId, String Comment) {
+	public Comment(long commentId, String comment) {
 		super();
-		this.CommentId = CommentId;
-		this.Comment = Comment;
+		this.commentId = commentId;
+		this.message = comment;
 	}
 
-	public int getCommentId() {
-		return CommentId;
+	public long getCommentId() {
+		return commentId;
 	}
 
-	public void setCommentId(int CommentId) {
-		this.CommentId = CommentId;
+	public void setCommentId(long commentId) {
+		this.commentId = commentId;
 	}
 
 	public String getComment() {
-		return Comment;
+		return message;
 	}
 
 	public void setComment(String Comment) {
-		this.Comment = Comment;
+		this.message = Comment;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [CommentId=" + CommentId + ", Comment=" + Comment + "]";
+		return "Comment [commentId=" + commentId + ", comment=" + message + ", post=" + post + ", user=" + user + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Comment == null) ? 0 : Comment.hashCode());
-		result = prime * result + CommentId;
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Comment other = (Comment) obj;
-		if (Comment == null) {
-			if (other.Comment != null)
-				return false;
-		} else if (!Comment.equals(other.Comment))
-			return false;
-		if (CommentId != other.CommentId)
-			return false;
-		return true;
-	}
+
+	
 }
