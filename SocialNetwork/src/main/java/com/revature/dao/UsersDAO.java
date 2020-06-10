@@ -10,7 +10,7 @@ import com.revature.entity.Users;
 
 
 @Repository
-public interface UsersDAO extends JpaRepository<Users, Long>, CrudRepository<Users, Long> {
+public interface UsersDAO extends JpaRepository<Users, Long>{
 
 	public List<Users> findUsersByUsername(String username);
 	

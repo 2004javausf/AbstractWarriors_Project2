@@ -15,7 +15,7 @@ public class RestServiceCorsApplication {
 				registry.addMapping("/**")
 				.allowedMethods("GET", "POST", "PUT", "DELETE")
 				.allowedHeaders("*")
-				.allowedOrigins("http://localhost:9000");
+				.allowedOrigins("http://localhost:4200");
 			}
 		};
 	}
