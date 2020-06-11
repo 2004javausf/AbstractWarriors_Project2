@@ -10,6 +10,6 @@ import com.revature.entity.Post;
 @Repository
 public interface PostDAO extends JpaRepository<Post, Long>{
 	
-	public List<Post> findPostsByUserID(long userID);
+	public List<Post> findPostsByUser(long userID);
 	
 }

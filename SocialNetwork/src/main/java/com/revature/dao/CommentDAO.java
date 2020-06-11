@@ -12,5 +12,5 @@ import com.revature.entity.Comment;
 @Repository
 public interface CommentDAO extends JpaRepository<Comment, Long>{
 	
-	public List<Comment> findCommentsByPostID(long postID);
+	public List<Comment> findCommentsByPost(long postID);
 }

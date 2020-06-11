@@ -20,6 +20,6 @@ public class PostService {
 	}
 	
 	public List<Post> findPostsByUserID (long userID) {
-		return pd.findPostsByUserID(userID);
+		return pd.findPostsByUser(userID);
 	}
 }

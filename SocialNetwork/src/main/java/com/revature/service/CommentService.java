@@ -19,7 +19,7 @@ public class CommentService {
 	}
 	
 	public List<Comment> findCommentsByPostID(long postID) {
-		return cd.findCommentsByPostID(postID);
+		return cd.findCommentsByPost(postID);
 	}
 	
 
