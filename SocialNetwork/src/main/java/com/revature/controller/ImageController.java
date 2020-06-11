@@ -23,7 +23,7 @@ import com.revature.dao.ImageDAO;
 import com.revature.entity.Image;
 
 @RestController
-@RequestMapping(path = "image")
+@RequestMapping("/image")
 public class ImageController {
 	@Autowired
 	ImageDAO imageDao;

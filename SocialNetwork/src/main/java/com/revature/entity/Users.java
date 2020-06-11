@@ -143,15 +143,6 @@ public class Users {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", profileImage="
 				+ profileImage + "]";
-	}
-	
-	
-	 
-	 
-	
-	 
-
-
-	
+	}	
 	 
 }

@@ -31,9 +31,24 @@ public class UsersService {
 		return ud.findUsersByFirstName(firstName);
 	}
 	
-	public List<Users> altLogin (String username, String email) {
+	public Users altLogin (String username, String email) {
 		return ud.findUsersByUsernameAndEmail(username, email);
 	}
+	
+	public Users changepassword (Users userFromRest) {
+		Optional<Users> userFromDb = ud.findById(userFromRest.getId());
+		Users user = userFromDb.get();
+		user.setPassword(userFromRest.getPassword());
+		return this.ud.save(user);
+	}
+	
+	public Users forgetpassword (Users userFromRest) {
+		Users userFromDb = ud.findUsersByUsernameAndEmail(userFromRest.getUsername(), userFromRest.getEmail());
+		Users user = userFromDb;
+		user.setPassword(userFromRest.getPassword());
+		return this.ud.save(user);
+	}
+
 	
 	public Users proImg (long id, String profileImage) {
 		System.out.println(id);
