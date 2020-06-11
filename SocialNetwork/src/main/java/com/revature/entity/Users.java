@@ -55,21 +55,6 @@ public class Users {
 		this.profileImage = profileImage;
 	}
 
-
-
-	public Users(long id, String firstName, String lastName, String username, String password, String email,
-			Date dateOfBirth, String profileImage) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.profileImage = profileImage;
-	}
-
 	public long getId() {
 		return id;
 	}

@@ -31,14 +31,21 @@ public class UsersService {
 		return ud.findUsersByFirstName(firstName);
 	}
 	
-	public List<Users> altLogin (String username, String email) {
+	public Users altLogin (String username, String email) {
 		return ud.findUsersByUsernameAndEmail(username, email);
 	}
 	
-	public Users proImg (long id, String profileImage) {
-		System.out.println(id);
-		Users user1 = ud.getOne(id);
-		user1.setProfileImage(profileImage);
-		return this.ud.save(user1);
+	public Users changepassword (Users userFromRest) {
+		Optional<Users> userFromDb = ud.findById(userFromRest.getId());
+		Users user = userFromDb.get();
+		user.setPassword(userFromRest.getPassword());
+		return this.ud.save(user);
+	}
+	
+	public Users forgetpassword (Users userFromRest) {
+		Users userFromDb = ud.findUsersByUsernameAndEmail(userFromRest.getUsername(), userFromRest.getEmail());
+		Users user = userFromDb;
+		user.setPassword(userFromRest.getPassword());
+		return this.ud.save(user);
 	}
 }
