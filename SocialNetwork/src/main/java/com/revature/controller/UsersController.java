@@ -45,6 +45,7 @@ public class UsersController {
     	return this.us.findByUsername(u.getUsername());
     }
     
+
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -75,6 +76,7 @@ public class UsersController {
     	return this.us.altLogin(u.getUsername(), u.getEmail());
     }
     
+
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/changepassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -101,4 +103,3 @@ public class UsersController {
 	}
 	
 }
-

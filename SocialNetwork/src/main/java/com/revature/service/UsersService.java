@@ -48,4 +48,12 @@ public class UsersService {
 		user.setPassword(userFromRest.getPassword());
 		return this.ud.save(user);
 	}
+
+	
+	public Users proImg (long id, String profileImage) {
+		System.out.println(id);
+		Users user1 = ud.getOne(id);
+		user1.setProfileImage(profileImage);
+		return this.ud.save(user1);
+	}
 }
