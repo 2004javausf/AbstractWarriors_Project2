@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -45,19 +44,19 @@ public class Post {
 	@JsonIgnore
 	private List<Image> images;
 
-	//@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-	//@Fetch(value = FetchMode.SUBSELECT)
-	//@JsonIgnore
-	//private List<Comment> comments;
+	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+//	@JsonIgnore
+	private List<Comment> comments;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	private Users user;
 
-//	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
+	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 //	@JsonIgnore
-//	private List<Users> likers;
+	private List<Users> likers;
 	
 	public Post() {}
 

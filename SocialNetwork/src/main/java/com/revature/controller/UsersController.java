@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.dao.UsersDAO;
 import com.revature.entity.Users;
 import com.revature.service.UsersService;
 
