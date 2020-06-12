@@ -3,13 +3,19 @@ package com.revature.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import com.revature.dao.UsersDAO;
+import com.revature.entity.Message;
 import com.revature.entity.Users;
 import com.revature.service.UsersService;
 
@@ -19,6 +25,8 @@ public class UsersController {
 	
 	@Autowired
 	UsersService us;
+	
+	@ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/adduser", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
@@ -26,6 +34,7 @@ public class UsersController {
         return this.us.insertUser(user);
     }
     
+	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/finduser", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
@@ -37,6 +46,8 @@ public class UsersController {
     	return this.us.findByUsername(u.getUsername());
     }
     
+
+	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
@@ -46,6 +57,7 @@ public class UsersController {
     	return this.us.login(u.getUsername(), u.getPassword());
     }
     
+	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/search", method = RequestMethod.POST, 
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
@@ -55,23 +67,40 @@ public class UsersController {
     	return this.us.findUserByName(u.getFirstName());
     }
     
+	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/altlogin", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public List<Users> altLogin (@RequestBody Users username, Users email){
+    public Users altLogin (@RequestBody Users username, Users email){
     	Users u = new Users();
     	u = username;
     	return this.us.altLogin(u.getUsername(), u.getEmail());
     }
     
-    @RequestMapping(value ="/proimg", method = RequestMethod.POST,
+
+	@ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value ="/changepassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users proimg (@RequestBody long id, String profileImage) {
-    	long id1 = id;
-    	System.out.println(id1);
-    	System.out.println(profileImage);
-    	return this.us.proImg(id1, profileImage);
+    public Users changepassword (@RequestBody Users userFromRest) {
+    	System.out.println(userFromRest);
+    	return this.us.changepassword(userFromRest);
     }
+    
+	@ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value ="/forgetpassword", method = RequestMethod.POST,
+    		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody()
+    public Users forgetpassword (@RequestBody Users userFromRest) {
+    	System.out.println(userFromRest);
+    	return this.us.forgetpassword(userFromRest);
+    }
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler
+	public Message handleException(NullPointerException e) {
+		return new Message("SORRY! UNABLE TO PROCESS YOUR REQUEST!");
+		
+	}
+	
 }
-

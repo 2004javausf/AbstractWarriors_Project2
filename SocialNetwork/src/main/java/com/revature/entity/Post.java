@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -37,6 +39,7 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_SUBMITTED")
 	private Date date;
 	

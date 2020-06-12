@@ -29,11 +29,11 @@ public class Users {
 	 private String firstName;
 	 @Column(name = "LAST_NAME")
 	 private String lastName;
-	 @Column(name = "USERNAME")
+	 @Column(name = "USERNAME", nullable=false, unique=true)
 	 private String username;
 	 @Column(name = "PASSWORD")
 	 private String password;
-	 @Column(name = "EMAIL")
+	 @Column(name = "EMAIL", nullable=false, unique=true)
 	 private String email;
 
 	 @Temporal(TemporalType.DATE)
@@ -153,15 +153,6 @@ public class Users {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", profileImage="
 				+ profileImage + "]";
-	}
-	
-	
-	 
-	 
-	
-	 
-
-
-	
+	}	
 	 
 }
