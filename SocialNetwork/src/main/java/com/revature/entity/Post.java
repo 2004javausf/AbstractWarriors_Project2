@@ -14,8 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -37,6 +39,7 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_SUBMITTED")
 	private Date date;
 	
@@ -45,19 +48,19 @@ public class Post {
 	@JsonIgnore
 	private List<Image> images;
 
-	//@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-	//@Fetch(value = FetchMode.SUBSELECT)
-	//@JsonIgnore
-	//private List<Comment> comments;
+	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+//	@JsonIgnore
+	private List<Comment> comments;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	private Users user;
 
-//	@ManyToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
+	@OneToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 //	@JsonIgnore
-//	private List<Users> likers;
+	private List<Users> likers;
 	
 	public Post() {}
 
