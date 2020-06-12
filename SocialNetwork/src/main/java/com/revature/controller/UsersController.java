@@ -51,9 +51,9 @@ public class UsersController {
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public List<Users> login (@RequestBody Users username, Users password){
+    public List<Users> login (@RequestBody Users user){
     	Users u = new Users();
-    	u = username;
+    	u = user;
     	return this.us.login(u.getUsername(), u.getPassword());
     }
     
