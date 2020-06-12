@@ -27,7 +27,7 @@ public class Image {
 	@Column(name = "type")
 	private String type;
 	
-	@Column(name = "picByte", length = 1000)
+	@Column(name = "picByte", length = 1000, nullable = true, columnDefinition="BLOB")
 	private byte[] picByte;
 
 	@ManyToOne(cascade = CascadeType.ALL)

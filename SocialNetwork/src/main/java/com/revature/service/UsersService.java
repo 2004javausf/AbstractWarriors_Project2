@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class UsersService {
 		return this.ud.save(user);
 	}
 	
-	public List<Users> findByUsername (String username) {
+	public Users findByUsername (String username) {
 		return ud.findUsersByUsername(username);
 	}
 	
@@ -48,12 +49,12 @@ public class UsersService {
 		user.setPassword(userFromRest.getPassword());
 		return this.ud.save(user);
 	}
-
 	
-	public Users proImg (long id, String profileImage) {
-		System.out.println(id);
-		Users user1 = ud.getOne(id);
-		user1.setProfileImage(profileImage);
-		return this.ud.save(user1);
+	public List<byte[]> getProfilePic(String username){
+		List<byte[]> images = new ArrayList<byte[]>();
+		Users user = this.ud.findUsersByUsername(username);
+		images.add(user.getProfileImage());
+		return images;
 	}
+
 }

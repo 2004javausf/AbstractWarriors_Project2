@@ -13,7 +13,7 @@ import com.revature.entity.Users;
 @Repository
 public interface UsersDAO extends JpaRepository<Users, Long>{
 
-	public List<Users> findUsersByUsername(String username);
+	public Users findUsersByUsername(String username);
 	
 	public List<Users> findUsersByUsernameAndPassword(String username, String password);
 	

@@ -29,7 +29,7 @@ public class ImageController {
 	ImageDAO imageDao;
 	
 	@PostMapping("/uploadimage")
-	public BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+	public BodyBuilder uplaodImage(@RequestParam("picByte") MultipartFile file) throws IOException {
 		 System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		 Image img = new Image(file.getOriginalFilename(), file.getContentType(),
 				                 compressBytes(file.getBytes()));
