@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UsersService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  async submitForm(){
+  async submitForm() {
     const formValue = this.loginForm.value;
     console.log(formValue);
-    this.userService.getUser(formValue).subscribe(res =>{
+    this.userService.getUser(formValue).subscribe(res => {
       this.user = res[0];
       console.log(this.user);
     })

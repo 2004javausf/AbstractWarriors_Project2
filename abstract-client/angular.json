@@ -28,8 +28,8 @@
               "src/styles.css"
             ],
             "scripts": [
-                "./node_modules/jquery/dist/jquery.min.js",
-                "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -120,15 +120,6 @@
             "production": {
               "devServerTarget": "abstract-client:serve:production"
             }
-          }
-        },
-        "deploy": {
-          "builder": "@jefiozie/ngx-aws-deploy:deploy",
-          "options": {
-            "region": "us-east-2",
-            "bucket": "abstract-warriors",
-            "secretAccessKey": "iG8HLWfply8QBqnT01i/6RS2EN/Rlf7qQaMxRqag",
-            "accessKeyId": "AKIARL42PYDYQP7RAC5E"
           }
         }
       }
