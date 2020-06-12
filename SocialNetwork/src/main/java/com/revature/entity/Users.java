@@ -1,19 +1,16 @@
 package com.revature.entity;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,13 +37,14 @@ public class Users {
 	 @Temporal(TemporalType.DATE)
 	 @Column(name = "DATE_OF_BIRTH")
 	 private Date dateOfBirth;
-	 @Column(name = "PROFILE_IMAGE")
+	 @Column(name = "PROFILE_IMAGE", nullable = true, columnDefinition="BLOB")
 	 private byte[] profileImage;
 	 
-//	 @OneToOne(fetch = FetchType.LAZY,
+//	 @OneToMany(fetch = FetchType.LAZY,
 //	            cascade =  CascadeType.ALL,
 //	            mappedBy = "user")
 //	    private Post post;
+
 	 
 	 @OneToMany
 	 @JoinTable(name="Users_Post")
@@ -57,6 +55,7 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
 		super();
@@ -67,9 +66,9 @@ public class Users {
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth,
-		byte[] profileImage) {
+			byte[] profileImage) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -80,11 +79,10 @@ public class Users {
 		this.profileImage = profileImage;
 	}
 
-
 	public Users(long id, String firstName, String lastName, String username, String password, String email,
 			Date dateOfBirth, byte[] profileImage) {
 		super();
-		this.id = id;
+		this.id=id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
@@ -92,6 +90,13 @@ public class Users {
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.profileImage = profileImage;
+	}
+
+	
+
+	public Users(String username) {
+		super();
+		this.username = username;
 	}
 
 	public long getId() {
@@ -109,7 +114,7 @@ public class Users {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -117,7 +122,7 @@ public class Users {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -163,8 +168,7 @@ public class Users {
 	public String toString() {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", profileImage="
-				+ profileImage + "]";
-
+				+ Arrays.toString(profileImage) + "]";
 	}
-}
 	
+}
