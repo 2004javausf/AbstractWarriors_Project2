@@ -39,7 +39,6 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="DATE_SUBMITTED")
 	private Date date;
 	
@@ -53,8 +52,8 @@ public class Post {
 //	@JsonIgnore
 	private List<Comment> comments;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="USER_ID")
+	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(name="USER_ID", nullable = false)
 	private Users user;
 
 	@OneToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
@@ -72,13 +71,12 @@ public class Post {
 		this.date = date;
 	}
 
-	public Post(int postId, String message, List<Image> images, int numOfLikes, Users user) {
+	public Post(int postId, String message, List<Image> images, int numOfLikes) {
 		super();
 		this.postId = postId;
 		this.message = message;
 		this.images = images;
 		this.numOfLikes = numOfLikes;
-		this.user = user;
 	}
 
 	public long getPostId() {

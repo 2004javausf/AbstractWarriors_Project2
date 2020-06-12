@@ -3,15 +3,17 @@ package com.revature.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,9 +41,13 @@ public class Users {
 	 @Column(name = "DATE_OF_BIRTH")
 	 private Date dateOfBirth;
 	 @Column(name = "PROFILE_IMAGE")
-	 private String profileImage;
+	 private byte[] profileImage;
 	 
-
+//	 @OneToOne(fetch = FetchType.LAZY,
+//	            cascade =  CascadeType.ALL,
+//	            mappedBy = "user")
+//	    private Post post;
+	 
 	 @OneToMany
 	 @JoinTable(name="Users_Post")
 //	 @JsonIgnore
@@ -52,8 +58,18 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth,
-			String profileImage) {
+		byte[] profileImage) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -66,7 +82,7 @@ public class Users {
 
 
 	public Users(long id, String firstName, String lastName, String username, String password, String email,
-			Date dateOfBirth, String profileImage) {
+			Date dateOfBirth, byte[] profileImage) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -135,11 +151,11 @@ public class Users {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getProfileImage() {
+	public byte[] getProfileImage() {
 		return profileImage;
 	}
 
-	public void setProfileImage(String profileImage) {
+	public void setProfileImage(byte[] profileImage) {
 		this.profileImage = profileImage;
 	}
 
