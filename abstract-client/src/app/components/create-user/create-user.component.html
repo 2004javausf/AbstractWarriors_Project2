@@ -1,28 +1,41 @@
-
-<form [formGroup]="userCreationForm" >
-    <label for="first_name">First Name:</label>
-    <input type="text" id="first_name" formControlName="first_name">
-    <br/>
-    <label for="last_name">Last Name:</label>
-    <input type="text" id="last_name" formControlName="last_name">
-    <br/>
-    <label for="username">Username:</label>
-    <input type="text" id="username" formControlName="username">
-    <br/>
-    <label for="password">Password:</label>
-    <input type="text" id="password" formControlName="password">
-    <br/>
-    <label for="email">Email:</label>
-    <input type="text" id="email" formControlName="email">
-    <br/>
-    <label for="date_of_birth">Birth Date:</label>
-    <input type="text" id="date_of_birth" formControlName="date_of_birth">
-    <br/>
-    <label for="biography">Biography:</label>             
-    <input type="text" id="biography" formControlName="biography">
-    <br/>
-    <label for="profile_image">Profile Image:</label>
-    <input type="text" id="profile_image" formControlName="profile_image">
-    <br/>
-    <button type="submit" (click)="createUser()">Create Your User</button>
-</form>
+<div class="col-8 offset-2 my-2 py-2">
+    <h3>Register for Tryle</h3>
+    <form [formGroup]="userCreationForm">
+        <div class="form-group">
+            <input class="form-control" type="text" id="first_name" formControlName="firstName">
+            <label for="first_name">First Name:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="form-control" type="text" id="last_name" formControlName="lastName">
+            <label for="last_name">Last Name:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="form-control" type="text" id="username" formControlName="username">
+            <label for="username">Username:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="form-control" type="password" id="password" formControlName="password">
+            <label for="password">Password:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="form-control" type="email" id="email" formControlName="email">
+            <label for="email">Email:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <input class="form-control" type="date" id="date_of_birth" formControlName="dateOfBirth">
+            <label for="date_of_birth">Birth Date:</label>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="profileImage">Profile Image:</label>
+            <input class="form-control" type="text" id="profileImage" formControlName="profileImage">
+        </div>
+        <br />
+        <button class="btn btn-success" type="submit" (click)="createUser()">Create Your User</button>
+    </form>
+</div>

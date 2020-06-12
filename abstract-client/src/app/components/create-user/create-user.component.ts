@@ -14,23 +14,22 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UsersService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
     this.userCreationForm = this.fb.group({
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       username: '',
       password: '',
       email: '',
-      date_of_birth: 0,
-      biography: '',
-      profile_image: 'default'
+      dateOfBirth: 0,
+      profileImage: 'default'
     })
   }
 
-  async createUser(){
+  async createUser() {
     const formValue = this.userCreationForm.value;
     console.log(formValue);
     this.userService.addUser(formValue).subscribe(res => {
