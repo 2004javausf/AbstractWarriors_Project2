@@ -1,6 +1,12 @@
-/* .navigation{
+.navigation{
     margin-bottom: 5em;
-} */
+}
+
+.jumbo{
+    border: 1px solid gray;
+    padding: 15em 3.5em;
+    margin: 0 4em;
+}
 
 /* .jumbo{
     background: url('../assets/images/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg') top fixed no-repeat;
@@ -9,7 +15,7 @@
     margin: 0 -2em;
 } */
 
-
+/* 
 body, html {
     margin: 0;
     padding: 0;
@@ -26,4 +32,4 @@ input[type="text"] {
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
-}
+} */

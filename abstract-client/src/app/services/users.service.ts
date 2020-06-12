@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/users';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export class UsersService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private httpService: HttpClient) { }
+  constructor(
+    private httpService: HttpClient,
+    private store: Store<any>
+    ) { }
 
   addUser(user: User): Observable<User> {
     return this.httpService.post<User>('http://localhost:9000/users/adduser', JSON.stringify(user), this.httpOptions)
@@ -20,5 +24,16 @@ export class UsersService {
 
   getUser(user: User): Observable<User> {
     return this.httpService.post<User>('http://localhost:9000/users/login', JSON.stringify(user), this.httpOptions);
+  }
+
+  getAllState() {
+    return this.store.select('appReducer')
+  }
+
+  updateState(obj){
+    this.store.dispatch({
+      type: obj.action,
+      payload: obj.payload
+    })
   }
 }

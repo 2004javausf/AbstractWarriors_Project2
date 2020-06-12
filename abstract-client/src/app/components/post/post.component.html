@@ -1,0 +1,19 @@
+<div class="post_box container-fluid">
+    <div class="">
+        <div class="row col-4 profilePic">
+            {{user.firstName}}
+        </div>
+        <div class="row m-2 status col-12 ">
+            {{post.message}}
+            {{post.images}}
+        </div>
+    </div>
+    <div class="row like_comment d-flex justify-content-between">
+        <div class="likes">
+            Likes <span>{{post.numOfLikes}}</span>
+        </div>
+        <div class="comments">
+         Comment
+        </div>
+    </div>
+</div>

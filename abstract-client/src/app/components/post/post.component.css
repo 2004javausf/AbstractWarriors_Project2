@@ -1,0 +1,18 @@
+.post_box{
+    max-width: 750px;
+    height: 200px;
+    border: 2px solid rgba(0, 0, 0, 0.575);
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 4px;
+    margin: 2em 0em;
+}
+
+.like_comment{
+    position: sticky;
+    padding: 3em 1em;
+}
+
+.status{
+    font-size: 12px;
+}

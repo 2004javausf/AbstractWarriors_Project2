@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './interfaces/users';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,11 @@ import { User } from './interfaces/users';
 export class AppComponent {
   title = 'Revature Social Network';
 
+  constructor() {
+
+  }
+
+  ngOnInit() {
+
+  }
 }
