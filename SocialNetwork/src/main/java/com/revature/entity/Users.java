@@ -66,6 +66,12 @@ public class Users {
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 	}
+	
+
+	public Users(String username) {
+		super();
+		this.username = username;
+	}
 
 	public long getId() {
 		return id;
