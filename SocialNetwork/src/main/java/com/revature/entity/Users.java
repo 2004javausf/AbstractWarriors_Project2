@@ -1,5 +1,6 @@
 package com.revature.entity;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class Users {
 	 @Temporal(TemporalType.DATE)
 	 @Column(name = "DATE_OF_BIRTH")
 	 private Date dateOfBirth;
-	 @Column(name = "PROFILE_IMAGE")
-	 private String profileImage;
+	 @Column(name = "PROFILE_IMAGE", nullable = true, columnDefinition="BLOB")
+	 private byte[] profileImage;
 	 
 
 	 @OneToMany
@@ -51,9 +52,9 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth,
-			String profileImage) {
+			byte[] profileImage) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -63,19 +64,24 @@ public class Users {
 		this.dateOfBirth = dateOfBirth;
 		this.profileImage = profileImage;
 	}
+	
+	
 
 
-	public Users(long id, String firstName, String lastName, String username, String password, String email,
-			Date dateOfBirth, String profileImage) {
+	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
-		this.profileImage = profileImage;
+	}
+	
+
+	public Users(String username) {
+		super();
+		this.username = username;
 	}
 
 	public long getId() {
@@ -93,7 +99,7 @@ public class Users {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -101,7 +107,7 @@ public class Users {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -135,11 +141,11 @@ public class Users {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getProfileImage() {
+	public byte[] getProfileImage() {
 		return profileImage;
 	}
 
-	public void setProfileImage(String profileImage) {
+	public void setProfileImage(byte[] profileImage) {
 		this.profileImage = profileImage;
 	}
 
@@ -147,8 +153,7 @@ public class Users {
 	public String toString() {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", profileImage="
-				+ profileImage + "]";
-
+				+ Arrays.toString(profileImage) + "]";
 	}
-}
 	
+}
