@@ -4,13 +4,15 @@ import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { HomeComponent } from './components/home/home.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+ // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
-  { path: "register", component: CreateUserComponent }
+  { path: "register", component: CreateUserComponent },
+  {path: "reset", component: ResetComponent}
 
 ];
 
