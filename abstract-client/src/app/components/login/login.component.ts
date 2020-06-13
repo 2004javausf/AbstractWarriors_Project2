@@ -29,13 +29,14 @@ export class LoginComponent implements OnInit {
   async submitForm() {
     const formValue = this.loginForm.value;
     console.log(formValue);
-    this.userService.updateState({
-      action: ACTION_LOGIN,
-      payload: this.user.firstName
-    })
     this.userService.getUser(formValue).subscribe(res => {
       this.user = res[0];
-      console.log(this.user);
+      this.userService.updateState({
+        action: ACTION_LOGIN,
+        payload: this.user
+      })
     })
+
+
   }
 }
