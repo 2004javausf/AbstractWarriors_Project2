@@ -1,29 +1,15 @@
 package com.revature.entity;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "POSTS")
@@ -43,54 +29,38 @@ public class Post {
 	@Column(name="DATE_SUBMITTED", columnDefinition="TimeStamp")
 	private Date date;
 	
-	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-	@JsonIgnore
-	private List<Image> images;
+	@Column(name="POST_IMAGE", nullable = true, columnDefinition="BLOB")
+	private byte[] postImage;
 
-//	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-//	@Fetch(value = FetchMode.SUBSELECT)
-//	@JsonIgnore
-//	private List<Comment> comments;
-	
-//	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-//	@JoinColumn(name="USERNAME", nullable = false)
-//	private Users user;
-	
 	@Column(name="USER_ID")
 	private long userId;
 
-	@OneToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
-//	@JsonIgnore
-	private List<Users> likers;
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date localDate) {
-		this.date = localDate;
-	}
-	
 	public Post() {
 		super();
 	}
 	
-	public Post(String message, List<Image> images, int numOfLikes) {
+	public Post(String message, byte[] postImages, int numOfLikes) {
 		super();
 		this.message = message;
-		this.images = images;
+		this.postImage = postImages;
 		this.numOfLikes = numOfLikes;
 	}
 
-	public Post(long postId, String message, int numOfLikes, Date date, List<Image> images, long userId) {
+	
+	public Post(String message, byte[] postImage, long userId) {
+		super();
+		this.message = message;
+		this.postImage = postImage;
+		this.userId = userId;
+	}
+
+	public Post(long postId, String message, int numOfLikes, Date date, byte[] postImages, long userId) {
 		super();
 		this.postId = postId;
 		this.message = message;
 		this.numOfLikes = numOfLikes;
 		this.date = date;
-		this.images = images;
+		this.postImage = postImages;
 		this.userId = userId;
 	}
 
@@ -109,13 +79,21 @@ public class Post {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public List<Image> getImages() {
-		return images;
+	
+	public Date getDate() {
+		return date;
 	}
 
-	public void setImages(List<Image> images) {
-		this.images = images;
+	public void setDate(Date localDate) {
+		this.date = localDate;
+	}
+
+	public byte[] getPostImages() {
+		return postImage;
+	}
+
+	public void setPostImages(byte[] postImages) {
+		this.postImage = postImages;
 	}
 
 	public int getNumOfLikes() {
@@ -125,14 +103,6 @@ public class Post {
 	public void setNumOfLikes(int numOfLikes) {
 		this.numOfLikes = numOfLikes;
 	}
-
-//	public Users getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(Users user) {
-//		this.user = user;
-//	}
 
 	public long getUserId() {
 		return userId;
@@ -144,7 +114,7 @@ public class Post {
 	
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", images=" + images + ", numOfLikes=" + numOfLikes
+		return "Post [postId=" + postId + ", message=" + message + ", image=" + postImage + ", numOfLikes=" + numOfLikes
 				+ ", user=" + userId + "]";
 	}
 }

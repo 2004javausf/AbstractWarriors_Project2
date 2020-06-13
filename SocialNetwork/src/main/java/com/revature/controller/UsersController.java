@@ -107,7 +107,7 @@ public class UsersController {
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/uploadimg")
+	@PostMapping("/uploadimage")
 	public List<String> uploadProfilePic(@RequestParam("username") String username, @RequestParam("profileImage") MultipartFile file) throws IOException{
 		List<String> rtrn = new ArrayList<String>();
 		Users user = this.us.findByUsername(username);
@@ -119,7 +119,7 @@ public class UsersController {
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@RequestMapping(value = "/getimg", method = RequestMethod.POST,
+	@RequestMapping(value = "/getimage", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<byte[]> getProfilePic(@RequestBody Users username) {
     	return this.us.getProfilePic(username.getUsername());

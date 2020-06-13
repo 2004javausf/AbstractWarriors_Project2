@@ -8,48 +8,37 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMMENTS")
-public class Comment {
+@Table(name = "LIKES")
+public class Likes {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="COMMENT_ID")
-	private long commentId;
-	
-	@Column(name="MESSAGE")
-	private String message;
+	@Column(name="LIKE_ID")
+	private long likeId;
 	
 	@Column(name="POST_ID")
 	private long  postId;
 	
 	@Column(name="USER_ID")
 	private long  userId;
-
-	public Comment() {
+	
+	public Likes() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(String comment, long postId, long userId) {
+	public Likes(long postId, long userId) {
 		super();
-		this.message = comment;
 		this.postId = postId;
 		this.userId = userId;
 	}
 
-	public long getCommentId() {
-		return commentId;
+	public long getLikeId() {
+		return likeId;
 	}
 
-	public void setCommentId(long commentId) {
-		this.commentId = commentId;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
+	public void setLikeId(long likeId) {
+		this.likeId = likeId;
 	}
 
 	public long getPostId() {
@@ -70,10 +59,9 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", comment=" + message + ", post=" + postId + ", user=" + userId + "]";
+		return "Likes [likeId=" + likeId + ", postId=" + postId + ", userId=" + userId + "]";
 	}
-
-
-
+	
+	
 	
 }

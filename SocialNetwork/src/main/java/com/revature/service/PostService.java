@@ -25,6 +25,17 @@ public class PostService {
 	}
 	
 	public List<Post> findAllPosts(){
-		return pd.findAll();
+		System.out.println("In fildallposts Service Method");
+		return this.pd.findAll();
 	}
+	
+	public Post findPostByPostId (long postId) {
+		return pd.findPostByPostId(postId);
+	
+	}
+	
+	public void updatePost (Post post) {
+		this.pd.save(post);
+	}
+	
  }
