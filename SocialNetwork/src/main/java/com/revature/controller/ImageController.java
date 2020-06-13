@@ -2,46 +2,50 @@ package com.revature.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.MediaType;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.revature.dao.ImageDAO;
+
 import com.revature.entity.Image;
+import com.revature.service.ImageService;
 
 @RestController
 @RequestMapping("/image")
 public class ImageController {
 	@Autowired
-	ImageDAO imageDao;
+	ImageService imageService;
 	
 	@PostMapping("/uploadimage")
-	public BodyBuilder uplaodImage(@RequestParam("picByte") MultipartFile file) throws IOException {
+	public List<String> uplaodImage(@RequestParam("picByte") MultipartFile file) throws IOException {
 		 System.out.println("Original Image Byte Size - " + file.getBytes().length);
 		 Image img = new Image(file.getOriginalFilename(), file.getContentType(),
 				                 compressBytes(file.getBytes()));
-		 imageDao.save(img);
-		     return ResponseEntity.status(HttpStatus.OK);
+		 this.imageService.insertImage(img);
+		 List<String> rtrn = new ArrayList<String>();
+		 rtrn.add("Successfully updated post img");
+		 return rtrn;
 	}
 	
-	@GetMapping(path = { "/get/{imageName}" })
-	public Image getImage(@PathVariable("imageName") String imageName) throws IOException {
-	     final Optional<Image> retrievedImage = imageDao.findByImage(imageName);
-	        Image img = new Image(retrievedImage.get().getImage(), retrievedImage.get().getType(),
-	                decompressBytes(retrievedImage.get().getPicByte()));
+	@RequestMapping(value = "/getpostimage", method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Image getImage(@RequestBody Image image) throws IOException {
+	     Image retrievedImage = imageService.findImageById(image.getImageId());
+	        Image img = new Image(retrievedImage.getImage(), retrievedImage.getType(),
+	                decompressBytes(retrievedImage.getPicByte()));
 	        return img;
 	    }
 

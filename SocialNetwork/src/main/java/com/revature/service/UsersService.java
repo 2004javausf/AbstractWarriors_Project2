@@ -32,9 +32,6 @@ public class UsersService {
 		return ud.findUsersByFirstName(firstName);
 	}
 	
-	public Users altLogin (String username, String email) {
-		return ud.findUsersByUsernameAndEmail(username, email);
-	}
 	
 	public Users changepassword (Users userFromRest) {
 		Optional<Users> userFromDb = ud.findById(userFromRest.getId());

@@ -52,6 +52,12 @@ public class Image {
 		this.type = type;
 		this.picByte = picByte;
 	}
+	
+
+	public Image(byte[] picByte) {
+		super();
+		this.picByte = picByte;
+	}
 
 	public long getImageId() {
 		return imageId;

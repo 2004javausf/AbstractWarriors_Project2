@@ -29,85 +29,65 @@ public class UsersController {
 	@Autowired
 	UsersService us;
 	
-	@ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/adduser", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
     @ResponseBody()
     public Users iu (@RequestBody Users user) {
         return this.us.insertUser(user);
     }
     
-	@ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/finduser", method = RequestMethod.POST,
+    @RequestMapping(value = "/findbyusername", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
     @ResponseBody()
-    public Users uu (@RequestBody Users username) {
-    	System.out.println(username);
-    	Users u = new Users();
-    	u = username;
-    	System.out.println(u);
-    	return this.us.findByUsername(u.getUsername());
+    public Users uu (@RequestBody Users userFromRest) {
+    	return this.us.findByUsername(userFromRest.getUsername());
     }
     
 
-	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
     @ResponseBody()
-    public Users login (@RequestBody Users username, Users password) {
-    	Users u = new Users();
-    	u = username;
-    	return this.us.login(u.getUsername(), u.getPassword());
+    public Users login (@RequestBody Users userFromRest){
+    	return this.us.login(userFromRest.getUsername(), userFromRest.getPassword());
     }
     
-	@ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value ="/search", method = RequestMethod.POST, 
+    @RequestMapping(value ="/findbyfirstname", method = RequestMethod.POST, 
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody()
-    public List<Users> findUserByName (@RequestBody Users firstName) {
-    	Users u = new Users();
-    	u = firstName;
-    	return this.us.findUserByName(u.getFirstName());
-    }
-    
 	@ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value ="/altlogin", method = RequestMethod.POST,
-    		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users altLogin (@RequestBody Users username, Users email){
-    	Users u = new Users();
-    	u = username;
-    	return this.us.altLogin(u.getUsername(), u.getEmail());
+    public List<Users> findUserByName (@RequestBody Users userFromRest) {
+    	return this.us.findUserByName(userFromRest.getFirstName());
     }
     
 
-	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/changepassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
     @ResponseBody()
     public Users changepassword (@RequestBody Users userFromRest) {
-    	System.out.println(userFromRest);
     	return this.us.changepassword(userFromRest);
     }
     
-	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/forgetpassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
     @ResponseBody()
     public Users forgetpassword (@RequestBody Users userFromRest) {
-    	System.out.println(userFromRest);
     	return this.us.forgetpassword(userFromRest);
     }
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler
-	public Message handleException(NullPointerException e) {
+	public Message handleException(Exception e) {
 		return new Message("SORRY! UNABLE TO PROCESS YOUR REQUEST!");
 		
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/uploadimg")
+	@PostMapping("/uploadprofileimg")
 	public List<String> uploadProfilePic(@RequestParam("username") String username, @RequestParam("profileImage") MultipartFile file) throws IOException{
 		List<String> rtrn = new ArrayList<String>();
 		Users user = this.us.findByUsername(username);
@@ -119,7 +99,7 @@ public class UsersController {
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@RequestMapping(value = "/getimg", method = RequestMethod.POST,
+	@RequestMapping(value = "/getprofileimg", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<byte[]> getProfilePic(@RequestBody Users username) {
     	return this.us.getProfilePic(username.getUsername());

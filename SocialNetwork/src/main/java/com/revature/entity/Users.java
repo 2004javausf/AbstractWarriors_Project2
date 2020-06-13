@@ -2,17 +2,12 @@ package com.revature.entity;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,25 +25,20 @@ public class Users {
 	 private String firstName;
 	 @Column(name = "LAST_NAME")
 	 private String lastName;
-	 @Column(name = "USERNAME", nullable=false, unique=true)
+	 @Column(name = "USERNAME")
 	 private String username;
 	 @Column(name = "PASSWORD")
 	 private String password;
-	 @Column(name = "EMAIL", nullable=false, unique=true)
+	 @Column(name = "EMAIL")
 	 private String email;
+
 	 @Temporal(TemporalType.DATE)
 	 @Column(name = "DATE_OF_BIRTH")
 	 private Date dateOfBirth;
 	 @Column(name = "PROFILE_IMAGE", nullable = true, columnDefinition="BLOB")
 	 private byte[] profileImage;
 	 
-
-	 @OneToMany
-	 @JoinTable(name="Users_Post")
-//	 @JsonIgnore
-	 private List<Post> likedPosts;
-	 
-	public Users() {
+	 public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -66,7 +56,6 @@ public class Users {
 	}
 	
 	
-
 
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
 		super();
@@ -130,7 +119,6 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
-	
 	}
 
 	public Date getDateOfBirth() {
@@ -155,5 +143,6 @@ public class Users {
 				+ ", password=" + password + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", profileImage="
 				+ Arrays.toString(profileImage) + "]";
 	}
-	
+
+	 
 }
