@@ -18,8 +18,8 @@ public class CommentService {
 		return this.cd.save(comment);
 	}
 	
-	public List<Comment> findCommentsByPostID(long postID) {
-		return cd.findCommentsByPost(postID);
+	public List<Comment> findCommentsByPostId(long postId) {
+		return cd.findCommentByPostId(postId);
 	}
 	
 

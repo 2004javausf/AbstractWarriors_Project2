@@ -55,8 +55,13 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
+	
+	public Users(long id) {
+		super();
+		this.id = id;
+	}
+
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
 		super();
 		this.firstName = firstName;

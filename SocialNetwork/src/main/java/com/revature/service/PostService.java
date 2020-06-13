@@ -19,7 +19,12 @@ public class PostService {
 		return this.pd.save(post);
 	}
 	
-	public List<Post> findPostsByUserID (long userID) {
-		return pd.findPostsByUser(userID);
+	public List<Post> findPostByUserId (long userId) {
+		return pd.findPostByUserId(userId);
+	
 	}
-}
+	
+	public List<Post> findAllPosts(){
+		return pd.findAll();
+	}
+ }

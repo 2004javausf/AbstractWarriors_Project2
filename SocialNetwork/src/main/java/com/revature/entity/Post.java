@@ -1,6 +1,7 @@
 package com.revature.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +40,7 @@ public class Post {
 	@Column(name="NUM_OF_LIKES")
 	private int numOfLikes;
 	
-	@Column(name="DATE_SUBMITTED")
+	@Column(name="DATE_SUBMITTED", columnDefinition="TimeStamp")
 	private Date date;
 	
 	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
@@ -47,36 +48,50 @@ public class Post {
 	@JsonIgnore
 	private List<Image> images;
 
-	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+//	@OneToMany(mappedBy="post", fetch = FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)
 //	@JsonIgnore
-	private List<Comment> comments;
+//	private List<Comment> comments;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name="USER_ID", nullable = false)
-	private Users user;
+//	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+//	@JoinColumn(name="USERNAME", nullable = false)
+//	private Users user;
+	
+	@Column(name="USER_ID")
+	private long userId;
 
 	@OneToMany(mappedBy="likedPosts", fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 //	@JsonIgnore
 	private List<Users> likers;
-	
-	public Post() {}
 
 	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date localDate) {
+		this.date = localDate;
 	}
-
-	public Post(int postId, String message, List<Image> images, int numOfLikes) {
+	
+	public Post() {
 		super();
-		this.postId = postId;
+	}
+	
+	public Post(String message, List<Image> images, int numOfLikes) {
+		super();
 		this.message = message;
 		this.images = images;
 		this.numOfLikes = numOfLikes;
+	}
+
+	public Post(long postId, String message, int numOfLikes, Date date, List<Image> images, long userId) {
+		super();
+		this.postId = postId;
+		this.message = message;
+		this.numOfLikes = numOfLikes;
+		this.date = date;
+		this.images = images;
+		this.userId = userId;
 	}
 
 	public long getPostId() {
@@ -111,19 +126,25 @@ public class Post {
 		this.numOfLikes = numOfLikes;
 	}
 
-	public Users getUser() {
-		return user;
+//	public Users getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(Users user) {
+//		this.user = user;
+//	}
+
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", message=" + message + ", images=" + images + ", numOfLikes=" + numOfLikes
-				+ ", user=" + user + "]";
+				+ ", user=" + userId + "]";
 	}
-	
-
 }
