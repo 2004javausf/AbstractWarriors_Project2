@@ -6,12 +6,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,7 +40,12 @@ public class Users {
 	 @Column(name = "PROFILE_IMAGE", nullable = true, columnDefinition="BLOB")
 	 private byte[] profileImage;
 	 
+//	 @OneToMany(fetch = FetchType.LAZY,
+//	            cascade =  CascadeType.ALL,
+//	            mappedBy = "user")
+//	    private Post post;
 
+	 
 	 @OneToMany
 	 @JoinTable(name="Users_Post")
 //	 @JsonIgnore
@@ -51,6 +54,22 @@ public class Users {
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Users(long id) {
+		super();
+		this.id = id;
+	}
+
+	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth,
@@ -64,19 +83,20 @@ public class Users {
 		this.dateOfBirth = dateOfBirth;
 		this.profileImage = profileImage;
 	}
-	
-	
 
-
-	public Users(String firstName, String lastName, String username, String password, String email, Date dateOfBirth) {
+	public Users(long id, String firstName, String lastName, String username, String password, String email,
+			Date dateOfBirth, byte[] profileImage) {
 		super();
+		this.id=id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
+		this.profileImage = profileImage;
 	}
+
 	
 
 	public Users(String username) {
