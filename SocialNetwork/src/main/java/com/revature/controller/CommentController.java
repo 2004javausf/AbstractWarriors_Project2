@@ -31,11 +31,11 @@ public class CommentController {
     @RequestMapping(value = "/findcomments", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public List<Comment> up (@RequestBody Post post) {
-    	System.out.println(post);
-    	Post p = new Post();
-    	p = post;
-    	System.out.println(p);
-    	return this.cs.findCommentsByPostID(p.getPostId());
+    public List<Comment> up (@RequestBody Comment postId) {
+    	System.out.println(postId);
+    	Comment c = new Comment();
+    	c = postId;
+    	System.out.println(c);
+    	return this.cs.findCommentsByPostId(c.getPostId());
     }
 }

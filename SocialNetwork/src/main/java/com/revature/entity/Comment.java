@@ -21,23 +21,30 @@ public class Comment {
 	
 	@Column(name="MESSAGE")
 	private String message;
+	
+	@Column(name="POST_ID")
+	private long  postId;
+	
+	@Column(name="USER_ID")
+	private long  userId;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="POST_ID")
-	private Post post;
-
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="USER_ID")
-	private Users user;
+//	@ManyToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="POST_ID")
+//	private Post post;
+//
+//	@ManyToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="USER_ID")
+//	private Users user;
 
 	public Comment() {
 		super();
 	}
 
-	public Comment(long commentId, String comment) {
+	public Comment(String comment, long postId, long userId) {
 		super();
-		this.commentId = commentId;
 		this.message = comment;
+		this.postId = postId;
+		this.userId = userId;
 	}
 
 	public long getCommentId() {
@@ -48,33 +55,33 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public String getComment() {
+	public String getMessage() {
 		return message;
 	}
 
-	public void setComment(String Comment) {
-		this.message = Comment;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
-	public Post getPost() {
-		return post;
+	public long getPostId() {
+		return postId;
 	}
 
-	public void setPost(Post post) {
-		this.post = post;
+	public void setPostId(long postId) {
+		this.postId = postId;
 	}
 
-	public Users getUser() {
-		return user;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", comment=" + message + ", post=" + post + ", user=" + user + "]";
+		return "Comment [commentId=" + commentId + ", comment=" + message + ", post=" + postId + ", user=" + userId + "]";
 	}
 
 

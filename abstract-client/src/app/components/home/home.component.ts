@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/interfaces/users';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,13 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent implements OnInit {
 
   isLoggedIn = false;
+  user: User
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
       this.userService.getAllState().subscribe(state => {
-      this.isLoggedIn = state;
+      this.isLoggedIn = state.isLoggedIn
+      this.user = state.user
       console.log(state);
     })
   }

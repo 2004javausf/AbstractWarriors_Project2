@@ -1,9 +1,11 @@
-<div>
+<div *ngIf="isLoggedIn == false">
     <div class="jumbo">
         <h3>Already a user? <span><a routerLink="/login">Login</a></span></h3>
         <h3>If not <span><a routerLink="/register">Register</a></span></h3>
     </div>
 </div>
-<div class="justify-content-center">
+<div *ngIf="isLoggedIn == true" class="justify-content-center">
+<app-post></app-post>
+<app-post></app-post>
 <app-post></app-post>
 </div>

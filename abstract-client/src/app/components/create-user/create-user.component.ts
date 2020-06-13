@@ -25,7 +25,7 @@ export class CreateUserComponent implements OnInit {
       password: '',
       email: '',
       dateOfBirth: 0,
-      profileImage: 'default'
+      profileImage: null
     })
   }
 
