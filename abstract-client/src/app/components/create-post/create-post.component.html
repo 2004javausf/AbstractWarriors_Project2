@@ -1,0 +1,46 @@
+
+<div class="post_box container-fluid">
+    <div class="">
+        <div class="row col-4 profilePic">
+            {{user.username}}
+        </div>
+        <div class="row m-2 status col-12 ">
+            <input class="blankInput" data-toggle="modal" data-target="#exampleModal" placeholder="update your status..."/>
+        
+        </div>
+    </div>
+    <div class="row like_comment d-flex justify-content-between">
+        <div class="likes">
+            Likes
+        </div>
+        <div class="comments">
+            Comment
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="postCreationForm"> 
+                <div class="modal-body">
+                    <input class="" type="text" formControlName="message"/>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <input type="file" formControlName="images" value="Upload Image"/>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Post</button>
+            </div>
+        </div>
+    </div>
+</div>

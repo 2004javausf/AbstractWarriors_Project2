@@ -4,7 +4,41 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-<!-- <div class="jumbo">
-  <h3>Already a user? <span><a routerLink="/login">Login</a></span></h3>
-  <h3>If not <span><a routerLink="/register">Register</a></span></h3>
-</div> -->
+<hr/>
+
+<div class="container row">
+  <div class="col-md-12">
+    <h1>Upload Image</h1>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="onUpload()" value="upload">
+  </div>
+</div>
+
+<!-- Get Image -->
+<hr />
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf=message>{{message}}</div>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName" name="name" />
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="getImage()" value="Get Image">
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf=retrievedImage>
+      <img [src]="retrievedImage">
+    </div>
+  </div>
+</div>

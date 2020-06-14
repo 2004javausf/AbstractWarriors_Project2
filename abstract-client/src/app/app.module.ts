@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateUserComponent } from './components/create-user/create-user.component'
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -14,7 +14,8 @@ import { ResetComponent } from './components/reset/reset.component'
 import { PostComponent } from './components/post/post.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import {reducers} from './store/reducers';
-import { LogoutComponent } from './components/logout/logout.component'
+import { LogoutComponent } from './components/logout/logout.component';
+import { CreatePostComponent } from './components/create-post/create-post.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { LogoutComponent } from './components/logout/logout.component'
     PostComponent,
     ProfileComponent,
     LogoutComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { LogoutComponent } from './components/logout/logout.component'
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers,{}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
