@@ -6,17 +6,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-
             <li class="nav-item">
                 <a class="nav-link" routerLink="/home">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/profile">Profile</a>
-            </li>
+            <div *ngIf="isLoggedIn==true">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile">Profile</a>
+                </li>
+            </div>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/logout">Logout</a>
             </li>
-
         </ul>
     </div>
 </nav>

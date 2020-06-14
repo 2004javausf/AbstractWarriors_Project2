@@ -10,7 +10,7 @@
         </div>
     <div class="row like_comment d-flex justify-content-between">
         <div class="likes">
-            Likes <span>{{post.numOfLikes}}</span>
+           <button (click)="likePost()" class="btn btn-info"> Likes <span>{{post.numOfLikes}}</span></button>
         </div>
         <div class="comments">
          Comment
