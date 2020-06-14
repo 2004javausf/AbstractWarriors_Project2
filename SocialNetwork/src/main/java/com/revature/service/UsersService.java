@@ -24,7 +24,7 @@ public class UsersService {
 		return ud.findUsersByUsername(username);
 	}
 	
-	public Users login (String username, String password){
+	public Optional<Users> login (String username, String password){
 		return ud.findUsersByUsernameAndPassword(username, password);
 	}
 	

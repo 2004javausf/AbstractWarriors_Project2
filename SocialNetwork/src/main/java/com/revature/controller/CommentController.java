@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entity.Comment;
-import com.revature.entity.Post;
 import com.revature.service.CommentService;
 
 
