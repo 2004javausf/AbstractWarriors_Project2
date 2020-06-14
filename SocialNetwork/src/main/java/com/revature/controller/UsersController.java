@@ -52,6 +52,7 @@ public class UsersController {
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
+
     public Optional<Users> login (@RequestBody Users user) {
 		Optional<Users> ou = us.login(user.getUsername(), user.getPassword());
     	if(ou.isPresent()== true) {
@@ -107,8 +108,9 @@ public class UsersController {
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/uploadimage")
-	public List<String> uploadProfilePic(@RequestPart("username") String username, @RequestPart("profileImage") MultipartFile file) throws IOException{
+    @RequestMapping(value = "/uploadimage",method = RequestMethod.POST, consumes = "multipart/form-data")
+	//@PostMapping("/uploadimage")
+	public List<String> uploadProfilePic(@RequestPart("profileImage") MultipartFile file, @RequestPart("username") String username) throws IOException{
 		List<String> rtrn = new ArrayList<String>();
 		Users user = this.us.findByUsername(username);
 		System.out.println(username);

@@ -14,7 +14,7 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UsersService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -25,11 +25,11 @@ export class CreateUserComponent implements OnInit {
       password: '',
       email: '',
       dateOfBirth: 0,
-      profileImage: 'default'
+      profileImage: null
     })
   }
 
-  async createUser(){
+  async createUser() {
     const formValue = this.userCreationForm.value;
     console.log(formValue);
     this.userService.addUser(formValue).subscribe(res => {
