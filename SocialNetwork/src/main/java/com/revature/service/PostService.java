@@ -26,7 +26,7 @@ public class PostService {
 	
 	public List<Post> findAllPosts(){
 		System.out.println("In fildallposts Service Method");
-		return this.pd.findAll();
+		return this.pd.findPostByOrderByDateDesc();
 	}
 	
 	public Post findPostByPostId (long postId) {

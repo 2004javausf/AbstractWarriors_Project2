@@ -3,6 +3,7 @@ package com.revature.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.revature.entity.Likes;
 import com.revature.entity.Message;
+import com.revature.entity.Post;
 import com.revature.entity.Users;
 import com.revature.service.UsersService;
 
@@ -41,12 +44,9 @@ public class UsersController {
     @RequestMapping(value = "/finduser", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users uu (@RequestBody Users username) {
-    	System.out.println(username);
-    	Users u = new Users();
-    	u = username;
-    	System.out.println(u);
-    	return this.us.findByUsername(u.getUsername());
+    public Users uu (@RequestBody Users user) {
+    	System.out.println(user);
+    	return this.us.findByUsername(user.getUsername());
     }
     
 
@@ -54,30 +54,32 @@ public class UsersController {
     @RequestMapping(value = "/login", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users login (@RequestBody Users username, Users password) {
-    	Users u = new Users();
-    	u = username;
-    	return this.us.login(u.getUsername(), u.getPassword());
+    public Optional<Users> login (@RequestBody Users user) {
+		Optional<Users> ou = us.login(user.getUsername(), user.getPassword());
+    	if(ou.isPresent()== true) {
+    		return ou;
+    	}
+    	else {
+    	
+    		return null;
+    	}
+    	
     }
     
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/search", method = RequestMethod.POST, 
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public List<Users> findUserByName (@RequestBody Users firstName) {
-    	Users u = new Users();
-    	u = firstName;
-    	return this.us.findUserByName(u.getFirstName());
+    public List<Users> findUserByName (@RequestBody Users user) {
+    	return this.us.findUserByName(user.getFirstName());
     }
     
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/altlogin", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users altLogin (@RequestBody Users username, Users email){
-    	Users u = new Users();
-    	u = username;
-    	return this.us.altLogin(u.getUsername(), u.getEmail());
+    public Users altLogin (@RequestBody Users user){
+		return this.us.altLogin(user.getUsername(), user.getEmail());
     }
     
 
@@ -85,18 +87,18 @@ public class UsersController {
     @RequestMapping(value ="/changepassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users changepassword (@RequestBody Users userFromRest) {
-    	System.out.println(userFromRest);
-    	return this.us.changepassword(userFromRest);
+    public Users changepassword (@RequestBody Users user) {
+    	System.out.println(user);
+    	return this.us.changepassword(user);
     }
     
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/forgetpassword", method = RequestMethod.POST,
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
-    public Users forgetpassword (@RequestBody Users userFromRest) {
-    	System.out.println(userFromRest);
-    	return this.us.forgetpassword(userFromRest);
+    public Users forgetpassword (@RequestBody Users user) {
+    	System.out.println(user);
+    	return this.us.forgetpassword(user);
     }
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
