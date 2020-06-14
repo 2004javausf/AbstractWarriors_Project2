@@ -1,9 +1,11 @@
 <div class="container">
-    <div class="row profile_pic justify-content-center">   
-        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"/>
+    <div class="row profile_pic justify-content-center"> 
+        <div class="" data-toggle="modal" data-target="#photoModal">  
+            <img [src]="image" style="width: 200px; height: 200px;"/>
+        </div>
     </div>
     <div class="row justify-content-center">
-        <h4>Jordan Parker</h4>
+        <h4>{{user.firstName}}  {{user.lastName}}</h4>
     </div>
     <br/>
     <div class="col-10 offset-2 justify-content-center">
@@ -17,5 +19,28 @@
     </div>
     <div class="col-10 offset-2 justify-content-center">
         <app-post></app-post>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="photoModalLabel">Upload New Photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <input type="file" (change)="onFileChanged($event)"  value="Upload Image" />
+                <button type="button" (click)="onUpload()" class="btn btn-info" >Upload Image</button>
+                <button type="button" (click)="getImage()" class="btn btn-success" data-dismiss="modal">Set Image</button>
+            </div>
+        </div>
     </div>
 </div>

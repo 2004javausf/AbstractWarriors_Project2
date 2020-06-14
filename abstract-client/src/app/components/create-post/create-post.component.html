@@ -26,20 +26,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Mood?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="postCreationForm"> 
+            <form enctype="multipart/form-data"> 
                 <div class="modal-body">
-                    <input class="" type="text" formControlName="message"/>
+                    <input class="" type="text" (change)="onMessageChanged($event)"/>
+                    <input type="hidden" value="user.userId"/>
                 </div>
             </form>
             <div class="modal-footer">
-                <input type="file" formControlName="images" value="Upload Image"/>
+                <input type="file" (change)="onFileChanged($event)"  value="Upload Image"/>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Post</button>
+                <button type="button" (click)="onPost()" class="btn btn-primary" data-dismiss="modal">Post</button>
             </div>
         </div>
     </div>

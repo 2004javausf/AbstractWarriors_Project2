@@ -17,4 +17,8 @@ export class PostService {
   addPost(post: Post): Observable<Post>{
     return this.httpService.post<Post>('http://localhost:9000/post/addpost', JSON.stringify(post), this.httpOptions)
   }
+
+  findAllPosts(): Observable<Post[]>{
+    return this.httpService.get<Post[]>('http://localhost:9000/post/findallposts')
+  }
 }

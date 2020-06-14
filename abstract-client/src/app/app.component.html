@@ -4,23 +4,29 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+<!-- Upload A Profile Picture//Takes UserName
 <hr/>
-
-<div class="container row">
-  <div class="col-md-12">
-    <h1>Upload Image</h1>
+<form enctype="multipart/form-data">
+  <div class="container row">
+    <div class="col-md-12">
+      <h1>Upload Image</h1>
+    </div>
   </div>
+  <div class="container row">
+    <div class="col-md-6">
+      <input type="file" (change)="onFileChanged($event)">
+    </div>
+    <div>
+      <input type="hidden" value="jpark"/>
+    </div>
+    <div class="col-md-6">
+      <input type="button" (click)="onUpload()" value="upload">
+    </div>
 </div>
-<div class="container row">
-  <div class="col-md-6">
-    <input type="file" (change)="onFileChanged($event)">
-  </div>
-  <div class="col-md-6">
-    <input type="button" (click)="onUpload()" value="upload">
-  </div>
-</div>
+</form>
 
-<!-- Get Image -->
+ Get Image 
 <hr />
 <div class="container row">
   <div class="col-md-12">
@@ -37,8 +43,13 @@
 </div>
 <div class="container row">
   <div class="col-md-12">
-    <div *ngIf=retrievedImage>
-      <img [src]="retrievedImage">
+    <div *ngIf=image>
+      <img [src]="image" style="width: 200px; height: 200px;">
     </div>
   </div>
-</div>
+</div> -->
+
+
+
+
+

@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.revature.entity.Likes;
 import com.revature.entity.Message;
-import com.revature.entity.Post;
 import com.revature.entity.Users;
 import com.revature.service.UsersService;
 
@@ -110,8 +108,9 @@ public class UsersController {
 	}
 	
     @ResponseStatus(code = HttpStatus.OK)
-	@PostMapping("/uploadimage")
-	public List<String> uploadProfilePic(@RequestParam("username") String username, @RequestParam("profileImage") MultipartFile file) throws IOException{
+    @RequestMapping(value = "/uploadimage",method = RequestMethod.POST, consumes = "multipart/form-data")
+	//@PostMapping("/uploadimage")
+	public List<String> uploadProfilePic(@RequestPart("profileImage") MultipartFile file, @RequestPart("username") String username) throws IOException{
 		List<String> rtrn = new ArrayList<String>();
 		Users user = this.us.findByUsername(username);
 		System.out.println(username);

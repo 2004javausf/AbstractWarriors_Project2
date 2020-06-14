@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/interfaces/users';
 import { Post } from 'src/app/interfaces/post';
+import { UsersService } from 'src/app/services/users.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -9,32 +11,17 @@ import { Post } from 'src/app/interfaces/post';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Post ={
-    postId: 0,
-    message: 'a message',
-    numOfLikes: 2,
-    date: "07-07-2020",
-    images: [null],
-    comments: [null],
-    userId: 0,
-    likers: [null]
-  }
+  @Input('post') post: Post;
 
-  @Input() user: User ={
-    user_id: 0,
-    firstName: 'Jordan',
-    lastName: 'Parker',
-    username: 'jpark',
-    password: 'password',
-    email: 'notnecessary',
-    dateOfBirth: "07-24-1992",
-    profileImage: null
-  }
-
-  constructor() { }
+  user: User
+  constructor(private userService: UsersService, private postService: PostService) { }
 
   ngOnInit(): void {
-    this.post
+    this.userService.getAllState().subscribe(state => {
+      this.user = state.user
+      console.log(state);
+    })
+    console.log(this.post)
   }
 
 }
