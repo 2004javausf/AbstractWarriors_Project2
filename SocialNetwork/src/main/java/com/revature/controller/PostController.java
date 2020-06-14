@@ -61,8 +61,7 @@ public class PostController {
     	return this.ps.findPostByUserId(p.getUserId());
     }
     
-    @RequestMapping(value = "/findallposts", method = RequestMethod.GET,
-            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/findallposts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody()
     public List<Post> up () {
     	System.out.println("In findallposts Controller Method");
