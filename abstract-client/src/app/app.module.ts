@@ -15,7 +15,8 @@ import { PostComponent } from './components/post/post.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import {reducers} from './store/reducers';
 import { LogoutComponent } from './components/logout/logout.component';
-import { CreatePostComponent } from './components/create-post/create-post.component'
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { OtherUserComponent } from './other-user/other-user.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     ProfileComponent,
     LogoutComponent,
     CreatePostComponent,
+    OtherUserComponent,
   ],
   imports: [
     BrowserModule,

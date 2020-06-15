@@ -8,6 +8,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { PostComponent } from './components/post/post.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { OtherUserComponent } from './other-user/other-user.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: "register", component: CreateUserComponent },
   {path: "reset", component: ResetComponent},
   {path: "post", component: PostComponent},
-  {path: "profile", component: ProfileComponent}
+  {path: "profile", component: ProfileComponent},
+  {path: "otherUser", component: OtherUserComponent}
 
 ];
 
