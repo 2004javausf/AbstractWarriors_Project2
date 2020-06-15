@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.dao.UsersDAO;
 import com.revature.entity.Users;
+import com.revature.util.LogThis;
 
 @Service
 public class UsersService {
@@ -40,14 +41,18 @@ public class UsersService {
 		Optional<Users> userFromDb = ud.findById(userFromRest.getId());
 		Users user = userFromDb.get();
 		user.setPassword(userFromRest.getPassword());
-		return this.ud.save(user);
+		user = ud.save(user);
+		LogThis.LogIt("info", user.getUsername()+" changed password sucessfully");
+		return user;
 	}
 	
 	public Users forgetpassword (Users userFromRest) {
 		Users userFromDb = ud.findUsersByUsernameAndEmail(userFromRest.getUsername(), userFromRest.getEmail());
 		Users user = userFromDb;
 		user.setPassword(userFromRest.getPassword());
-		return this.ud.save(user);
+		user = ud.save(user);
+		LogThis.LogIt("info", user.getUsername()+" resetted password sucessfully");
+		return user;
 	}
 	
 	public List<byte[]> getProfilePic(String username){
