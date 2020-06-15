@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
       this.post.userId = state.user.id
       console.log(this.post.userId)
 
-      this.httpClient.post('http://localhost:9000/users/getimage', this.user)
+      this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/getimage', this.user)
         .subscribe(
           res => {
             let data = res[0];
@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
     uploadImageData.append('username', this.user.username)
 
     //Make a call to the Spring Boot Application to save the image
-    this.httpClient.post('http://localhost:9000/users/uploadimage/', uploadImageData, { observe: 'response' })
+    this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/uploadimage/', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.message = 'Image uploaded successfully';
@@ -115,7 +115,7 @@ export class ProfileComponent implements OnInit {
   getImage() {
     //Make a call to Sprinf Boot to get the Image Bytes.
     console.log(this.user);
-    this.httpClient.post('http://localhost:9000/users/getimage', this.user)
+    this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/getimage', this.user)
       .subscribe(
         res => {
           let data = res[0];

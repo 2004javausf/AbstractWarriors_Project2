@@ -21,46 +21,46 @@ import com.revature.entity.Users;
 @RunWith(SpringRunner.class)
 class SocialNetworkApplicationTests {
 
-	@Test
-	void contextLoads() {
-		
-	}
-	
-	@Autowired
-	UsersController uc;
-	
-	@Autowired
-	CommentController cc;
-	
-	@Test
-	public void testLogin() throws Exception {
-	String username = "Vee";
-	String password = "pass";
-	Users user = new Users();
-	
-	user.setUsername(username);
-	user.setPassword(password);
-	Optional<Users> ou = uc.login(user);
-	
-    assertTrue(ou.isPresent()==true);
-	}
-	
-	@Test
-	public void testFindUsername() throws Exception {
-		Users user = new Users();
-		user.setUsername("Vee");
-		Users user1 = uc.uu(user);
-		assertTrue(user1.getUsername().equals(user.getUsername()));
-	}
-	
-	@Test
-	public void findCommentByPostId() throws Exception{
-		Comment comment = new Comment();
-		List<Comment> comm;
-		comment.setPostId(6);
-		comm = cc.up(comment);
-		assertTrue(comm.size() != 0);
-	}
+//	@Test
+//	void contextLoads() {
+//		
+//	}
+//	
+//	@Autowired
+//	UsersController uc;
+//	
+//	@Autowired
+//	CommentController cc;
+//	
+//	@Test
+//	public void testLogin() throws Exception {
+//	String username = "Vee";
+//	String password = "pass";
+//	Users user = new Users();
+//	
+//	user.setUsername(username);
+//	user.setPassword(password);
+//	Optional<Users> ou = uc.login(user);
+//	
+//    assertTrue(ou.isPresent()==true);
+//	}
+//	
+//	@Test
+//	public void testFindUsername() throws Exception {
+//		Users user = new Users();
+//		user.setUsername("Vee");
+//		Users user1 = uc.uu(user);
+//		assertTrue(user1.getUsername().equals(user.getUsername()));
+//	}
+//	
+//	@Test
+//	public void findCommentByPostId() throws Exception{
+//		Comment comment = new Comment();
+//		List<Comment> comm;
+//		comment.setPostId(6);
+//		comm = cc.up(comment);
+//		assertTrue(comm.size() != 0);
+//	}
 
 
 }
