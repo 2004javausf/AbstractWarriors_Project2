@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.revature.entity.Message;
 import com.revature.entity.Users;
 import com.revature.service.UsersService;
+import com.revature.util.LogThis;
 
 @RestController
 @RequestMapping("/users")
@@ -56,6 +57,7 @@ public class UsersController {
     public Optional<Users> login (@RequestBody Users user) {
 		Optional<Users> ou = us.login(user.getUsername(), user.getPassword());
     	if(ou.isPresent()== true) {
+    		LogThis.LogIt("info", user.getUsername()+" logged in sucessfully");
     		return ou;
     	}
     	else {
@@ -65,6 +67,13 @@ public class UsersController {
     	
     }
     
+	@ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/logout", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void logout (@RequestBody Users user) {
+    		LogThis.LogIt("info", user.getUsername()+" logged out sucessfully");   	
+    }
+	
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value ="/search", method = RequestMethod.POST, 
     		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,7 +97,7 @@ public class UsersController {
     @ResponseBody()
     public Users changepassword (@RequestBody Users user) {
     	System.out.println(user);
-    	return this.us.changepassword(user);
+    	return this.us.changepassword(user);	
     }
     
 	@ResponseStatus(HttpStatus.OK)
@@ -116,6 +125,7 @@ public class UsersController {
 		System.out.println(username);
         user.setProfileImage(file.getBytes());
 		this.us.insertUser(user);
+		LogThis.LogIt("info", user.getUsername()+" updated profile image sucessfully");
 		rtrn.add("Successfully updated profile img");
 		return rtrn;
 	}

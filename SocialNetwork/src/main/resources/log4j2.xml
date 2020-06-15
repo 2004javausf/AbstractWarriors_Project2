@@ -8,7 +8,7 @@
 				</Pattern>
 			</PatternLayout>
 		</Console>
-		<File name="File" fileName="C:/Users/cyana/Desktop/Revature/Spring Tool Suite 4/logging.log">
+		<File name="File" fileName="C:/Users/Jimmy/Desktop/Git/Projects/2/AbstractWarriors_Project2/SocialNetwork/logging.log">
 			<PatternLayout>
 				<Pattern>
 					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
