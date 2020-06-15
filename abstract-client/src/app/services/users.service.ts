@@ -19,15 +19,15 @@ export class UsersService {
     ) { }
 
   addUser(user: User): Observable<User> {
-    return this.httpService.post<User>('http://localhost:9000/users/adduser', JSON.stringify(user), this.httpOptions)
+    return this.httpService.post<User>('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/adduser', JSON.stringify(user), this.httpOptions)
   }
 
   getUser(user: User): Observable<User> {
-    return this.httpService.post<User>('http://localhost:9000/users/login', JSON.stringify(user), this.httpOptions);
+    return this.httpService.post<User>('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/login', JSON.stringify(user), this.httpOptions);
   }
 
   getUserByFirstname(otherUser: User): Observable<User>{
-    return this.httpService.post<User>('http://localhost:9000/users/search', JSON.stringify(otherUser), this.httpOptions)
+    return this.httpService.post<User>('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/users/search', JSON.stringify(otherUser), this.httpOptions)
   }
 
   getAllState() {
@@ -44,3 +44,4 @@ export class UsersService {
     return this.store.select('otherUserReducer')
   }
 }
+

@@ -75,7 +75,7 @@ export class CreatePostComponent implements OnInit {
     if(this.selectedFile == undefined){
         uploadImageData.append('message', this.postMessage);
         //Make a call to the Spring Boot Application to save the image
-        this.httpClient.post('http://localhost:9000/post/addpost', uploadImageData, { observe: 'response' })
+      this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/post/addpost', uploadImageData, { observe: 'response' })
           .subscribe((response) => {
         
           });
@@ -83,7 +83,7 @@ export class CreatePostComponent implements OnInit {
     }else if(this.postMessage == undefined){
         uploadImageData.append('message', '~')
         uploadImageData.append('postImage', this.selectedFile, this.selectedFile.name);
-        this.httpClient.post('http://localhost:9000/post/addpostwithImage', uploadImageData, { observe: 'response' })
+      this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/post/addpostwithImage', uploadImageData, { observe: 'response' })
           .subscribe((response) => {
             
           });
@@ -91,7 +91,7 @@ export class CreatePostComponent implements OnInit {
     }else{
         uploadImageData.append('message', this.postMessage);
         uploadImageData.append('postImage', this.selectedFile, this.selectedFile.name);
-        this.httpClient.post('http://localhost:9000/post/addpostwithImage', uploadImageData, { observe: 'response' })
+      this.httpClient.post('http://ec2-18-220-15-80.us-east-2.compute.amazonaws.com:9000/post/addpostwithImage', uploadImageData, { observe: 'response' })
           .subscribe((response) => {
             
           });

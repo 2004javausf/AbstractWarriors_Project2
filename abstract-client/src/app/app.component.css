@@ -7,7 +7,10 @@
     padding: 15em 3.5em;
     margin: 0 4em;
 }
-
+.backDrop img{
+    height: 600px;
+    width: 75%;
+}
 /* .jumbo{
     background: url('../assets/images/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg') top fixed no-repeat;
     background-size: cover;
