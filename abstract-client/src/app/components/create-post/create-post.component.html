@@ -1,0 +1,47 @@
+
+<div class="post_box container-fluid">
+    <div class="">
+        <div class="row col-4 profilePic">
+            {{user.username}}
+        </div>
+        <div class="row m-2 status col-12 ">
+            <input class="blankInput" data-toggle="modal" data-target="#exampleModal" placeholder="update your status..."/>
+        
+        </div>
+    </div>
+    <div class="row like_comment d-flex justify-content-between">
+        <div class="likes">
+            Likes
+        </div>
+        <div class="comments">
+            Comment
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mood?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form enctype="multipart/form-data"> 
+                <div class="modal-body">
+                    <input class="" type="text" (change)="onMessageChanged($event)"/>
+                    <input type="hidden" value="user.userId"/>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <input type="file" (change)="onFileChanged($event)"  value="Upload Image"/>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="onPost()" class="btn btn-primary" data-dismiss="modal">Post</button>
+            </div>
+        </div>
+    </div>
+</div>

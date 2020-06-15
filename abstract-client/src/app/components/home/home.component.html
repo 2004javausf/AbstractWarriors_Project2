@@ -1,4 +1,17 @@
-<div class="jumbo">
-    <h3>Already a user? <span><a routerLink="/login">Login</a></span></h3>
-    <h3>If not  <span><a routerLink="/register">Register</a></span></h3>
+<div *ngIf="isLoggedIn == false">
+    <div class="jumbo">
+        <h3>Already a user? <span><a routerLink="/login">Login</a></span></h3>
+        <h3>If not <span><a routerLink="/register">Register</a></span></h3>
+    </div>
+</div>
+<div *ngIf="isLoggedIn == true">
+<div class="justify-content-center">
+    <app-create-post></app-create-post>
+    <div *ngFor="let post of posts">
+        <div class="container" style="width: 800px; height: 800;">
+            
+            <app-post [post]="post"></app-post>
+        </div>
+    </div>
+</div>
 </div>

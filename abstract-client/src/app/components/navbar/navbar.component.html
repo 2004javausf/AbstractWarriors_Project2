@@ -6,14 +6,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-
             <li class="nav-item">
                 <a class="nav-link" routerLink="/home">Home</a>
             </li>
+            <div *ngIf="isLoggedIn==true">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile">Profile</a>
+                </li>
+                <li>
+                    <form [formGroup]="searchForm">
+                        <input type="text" formControlName="firstName" placeholder="Enter name..." />
+                        <input type="submit" (click)="findUser()" value="Search" />
+                    </form>
+                </li>
+            </div>
             <li class="nav-item">
-                <a class="nav-link" routerLink="#">Profile</a>
+                <a class="nav-link" routerLink="/logout">Logout</a>
             </li>
 
         </ul>
     </div>
 </nav>
+<br/>
+
+
+<!--Only for other Users-->
+<div *ngIf="otherUser">
+    <app-other-user [otherUser]="otherUser"></app-other-user>
+</div>

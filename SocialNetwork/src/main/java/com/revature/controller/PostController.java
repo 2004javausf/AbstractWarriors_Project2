@@ -29,16 +29,66 @@ public class PostController {
 	@Autowired
 	PostService ps;
 	
-	@ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/addpost")
+
+    @PostMapping(value = "/addpost",  consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
+    		produces= MediaType.APPLICATION_JSON_VALUE )
     @ResponseBody()
-    public String insertPost (@RequestPart("message") String message, @RequestPart("postImage") MultipartFile image, @RequestPart("userId") int userId) {
+    public String insertPost (@RequestPart("message") String message,  @RequestPart("userId") String userId) {
+    	String rtrn = null;
+    	try {
+			Post p = new Post();
+			p.setMessage(message);
+			p.setUserId(Integer.parseInt(userId));
+			
+			Date date = new Date();
+			System.out.println(date);
+			p.setDate(date);
+			
+			this.ps.insertPost(p);
+			rtrn="Post created successfully";
+			
+    	} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rtrn;
+		
+    }
+    
+    @PostMapping(value = "/addpostwithImage",  consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_OCTET_STREAM_VALUE})
+    @ResponseBody()
+    public String insertPost (@RequestPart("message") String message, @RequestPart("postImage") MultipartFile image, @RequestPart("userId") String userId) {
     	String rtrn = null;
     	try {
 			Post p = new Post();
 			p.setMessage(message);
 			p.setPostImages(image.getBytes());
-			p.setUserId(userId);
+			p.setUserId(Integer.parseInt(userId));
+			
+			Date date = new Date();
+			System.out.println(date);
+			p.setDate(date);
+			
+			this.ps.insertPost(p);
+			rtrn="Post created successfully";
+			
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rtrn;
+		
+    }
+    
+    @PostMapping(value = "/addpostwithoutmessage",  consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_OCTET_STREAM_VALUE})
+    @ResponseBody()
+    public String insertPost ( @RequestPart("postImage") MultipartFile image, @RequestPart("userId") String userId) {
+    	String rtrn = null;
+    	try {
+    		int id = Integer.parseInt(userId);
+			Post p = new Post();
+			p.setPostImages(image.getBytes());
+			p.setUserId(id);
 			
 			Date date = new Date();
 			System.out.println(date);
