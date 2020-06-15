@@ -26,14 +26,21 @@ export class UsersService {
     return this.httpService.post<User>('http://localhost:9000/users/login', JSON.stringify(user), this.httpOptions);
   }
 
+  getUserByFirstname(otherUser: User): Observable<User>{
+    return this.httpService.post<User>('http://localhost:9000/users/search', JSON.stringify(otherUser), this.httpOptions)
+  }
+
   getAllState() {
     return this.store.select('appReducer')
   }
-
   updateState(obj){
     this.store.dispatch({
       type: obj.action,
       payload: obj.payload
     })
+  }
+
+  getOtherUserState() {
+    return this.store.select('otherUserReducer')
   }
 }
